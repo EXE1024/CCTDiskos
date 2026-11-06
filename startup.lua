@@ -73,8 +73,8 @@ function drivers.init.monitor()
 end
 
 local function shellapi(data)
-    local exec = xpcall(split, xpcallerr, data, ":")
-    local params = xpcall(split, xpcallerr, exec[2], ",")
+    local _, exec = xpcall(split, xpcallerr, data, ":")
+    local _, params = xpcall(split, xpcallerr, exec[2], ",")
 
     local file = "execs/"..exec[1]..".lua"
     local eargs = " "
