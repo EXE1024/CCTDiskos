@@ -10,7 +10,9 @@ local checkup = {
 local function split(text, sep)
     local array = {}
     local pattern = string.format("([^%s]+)", sep)
-    
+    if text = "" then
+        return array
+    end 
     if string.find(text, sep, 1, true) then
         for part in string.gmatch(text, pattern) do
             table.insert(array, part)
