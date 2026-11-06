@@ -22,5 +22,5 @@ local function installer()
     monitor.setTextColor(colors.lime)
     print("Rebooting...")
 
-    os.reboot
+    os.reboot()
 end
