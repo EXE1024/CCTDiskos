@@ -1,7 +1,7 @@
 local version = "gitextern 1.0 CCTDISKOS"
 local monitor = peripheral.wrap("top")
 local checkup = {
-    execs={"diskos.lua"}
+    execs={"diskos.lua", "fs.lua"}
 }
 -- Made for CC Tweaked (Minecraft Mod)
 
@@ -11,10 +11,11 @@ local function split(text, sep)
     local array = {}
     local pattern = string.format("([^%s]+)", sep)
     
-    for part in string.gmatch(text, pattern) do
-        table.insert(array, part)
+    if string.find(text, sep, 1, true) then
+        for part in string.gmatch(text, pattern) do
+            table.insert(array, part)
+        end
     end
-    
     return array
 end
 
