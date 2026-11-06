@@ -72,13 +72,15 @@ end
 
 local function shellapi(data)
     local exec = split(data, ":")
-
-    print("ok exec:"..exec[1])
-
     local params = split(exec[2], ",")
 
-    for _, param in ipairs(params) do
-        print(param)
+    local file = "execs/"..exec[1]..".lua"
+    local eargs = " "
+    if fs.exists(file) then
+        for _, param in params do
+            eargs = eargs..param
+        end
+        shell.run(file..eargs)
     end
 end
 
