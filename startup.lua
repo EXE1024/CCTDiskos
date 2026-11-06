@@ -1,4 +1,3 @@
-
 local version = "gitextern 1.0 CCTDISKOS"
 local monitor = peripheral.wrap("top")
 local checkup = {
@@ -24,7 +23,7 @@ local function check()
 
         for _, file in ipairs(files) do
             if contains(checkup.execs, file) then
-                corrects = corrects + 1
+                corrects = 1 + corrects
             end
         end
     end 
@@ -41,6 +40,7 @@ local function fulldead()
     print("The system is completely damaged; please reinstall the system carefully to fix this error")
     print("█████████████████████████████████████████████████████████████████████████████████████████")
     os.shutdown()
+end
 
 -- INIT FUNCTIONS
 
@@ -49,13 +49,15 @@ local drivers = {
     init = {}
 }
 
-local function drivers.init.monitor() 
+function drivers.init.monitor() 
     if monitor then
         term.redirect(monitor)
         monitor.clear()
         monitor.setCursorPos(1,1)
         monitor.setTextColor(colors.white)
         table.insert(drivers.started, "monitor")
+    end
+end
 
 local function startup()
     local scan = check()
@@ -64,5 +66,6 @@ local function startup()
     end
 
     drivers.init.monitor()
-    print("Drivers: "..drivers)
 end
+
+startup()
