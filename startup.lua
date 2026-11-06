@@ -47,7 +47,7 @@ end
 -- ERROR FUNCTIONS
 
 local function xpcallerr(err)
-    print("The command cannot be processed; ensure that the syntax is correct:"..err)
+    print("The command cannot be processed; ensure that the syntax is correct")
 end
 local function fulldead()
     print("The system is completely damaged; please reinstall the system carefully to fix this error")
@@ -73,20 +73,21 @@ function drivers.init.monitor()
 end
 
 local function shellapi(data)
-    local usellessvar1, exec = xpcall(split, xpcallerr, data, ":")
-    local useelelelellesvar2, params = xpcall(split, xpcallerr, exec[2], ",")
+    local go1, exec = xpcall(split, xpcallerr, data, ":")
+    local go2, params = xpcall(split, xpcallerr, exec[2], ",")
 
-    local file = "execs/"..exec[1]..".lua"
-    local eargs = " "
-    if fs.exists(file) then
-        for _, param in ipairs(params) do
-            eargs = eargs..param
+    if go1 == true and go2 == true then
+        local file = "execs/"..exec[1]..".lua"
+        local eargs = " "
+        if fs.exists(file) then
+            for _, param in ipairs(params) do
+                eargs = eargs..param
+            end
+            shell.run(file..eargs)
+        else
+            print("No such a program")
         end
-        shell.run(file..eargs)
-    else
-        print("No such a program")
-    end
-
+    end 
 end
 
 local function startup()
