@@ -1,11 +1,12 @@
 local monitor = peripheral.wrap("top")
-local wget = {"wget https://raw.githubusercontent.com/EXE1024/CCTDiskos/refs/heads/main/startup.lua startup.lua", "mkdir execs", "cd execs", "wget https://raw.githubusercontent.com/EXE1024/CCTDiskos/refs/heads/main/execs/diskos.lua diskos.lua", "rm rom"}
+local wget = {"wget https://raw.githubusercontent.com/EXE1024/CCTDiskos/refs/heads/main/startup.lua startup.lua", "mkdir execs", "cd execs", "wget https://raw.githubusercontent.com/EXE1024/CCTDiskos/refs/heads/main/execs/diskos.lua diskos.lua"}
 
 if monitor then
     term.redirect(monitor)
     monitor.clear()
     monitor.setCursorPos(1,1)
     monitor.setTextColor(colors.white)
+    table.insert(drivers.started, "monitor")
 
     print("Monitor driver successfully started")
 end
