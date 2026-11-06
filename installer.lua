@@ -1,6 +1,4 @@
 local monitor = peripheral.wrap("top")
-local wget = {"https://raw.githubusercontent.com/EXE1024/CCTDiskos/refs/heads/main/startup.lua", "mkdir execs", "cd execs", "https://raw.githubusercontent.com/EXE1024/CCTDiskos/refs/heads/main/execs/diskos.lua"}
-
 if monitor then
     term.redirect(monitor)
     monitor.clear()
@@ -14,9 +12,10 @@ local function installer()
     monitor.setTextColor(colors.cyan)
     print("Installing...")
 
-    for _, wgets in ipairs(wget) do
-        shell.run(wgets)
-    end
+    shell.run("wget","https://raw.githubusercontent.com/EXE1024/CCTDiskos/refs/heads/main/startup.lua", "startup")
+    shell.run("mkdir","execs")
+    shell.run("cd","execs")
+    shell.run("wget","https://raw.githubusercontent.com/EXE1024/CCTDiskos/refs/heads/main/execs/diskos.lua","diskos.lua")
 
     monitor.setTextColor(colors.lime)
     print("Rebooting...")
