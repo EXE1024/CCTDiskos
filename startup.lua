@@ -7,7 +7,7 @@ local checkup = {
 
 -- CHECKUP FUNCTIONS
 
-function split(text, sep)
+local function split(text, sep)
     local array = {}
     local pattern = string.format("([^%s]+)", sep)
     
@@ -71,7 +71,15 @@ function drivers.init.monitor()
 end
 
 local function shellapi(data)
-    print("workkking:"..data)
+    local exec = split(data, ":")
+
+    print("ok exec:"..exec[1])
+
+    local params = split(exec[2], ",")
+
+    for _, param in ipairs(params) do
+        print(param)
+    end
 end
 
 local function startup()
