@@ -45,7 +45,7 @@ end
 -- INIT FUNCTIONS
 
 local drivers = {
-    started = {}
+    started = {},
     init = {}
 }
 
