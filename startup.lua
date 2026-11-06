@@ -77,11 +77,14 @@ local function shellapi(data)
     local file = "execs/"..exec[1]..".lua"
     local eargs = " "
     if fs.exists(file) then
-        for _, param in params do
+        for _, param in ipairs(params) do
             eargs = eargs..param
         end
         shell.run(file..eargs)
+    else
+        print("No such a program")
     end
+
 end
 
 local function startup()
