@@ -24,7 +24,7 @@ local function check()
 
         for _, file in ipairs(files) do
             if contains(checkup.execs, file) then
-                corrects += 1
+                corrects = corrects + 1
             end
         end
     end 
