@@ -16,7 +16,7 @@ local function installer()
     shell.run("mkdir","execs")
     shell.run("cd","execs")
     shell.run("wget","https://raw.githubusercontent.com/EXE1024/CCTDiskos/refs/heads/main/execs/diskos.lua","diskos.lua")
-
+    shell.run("wget","https://raw.githubusercontent.com/EXE1024/CCTDiskos/refs/heads/main/execs/fs.lua","fs.lua")
     monitor.setTextColor(colors.lime)
     print("Rebooting...")
 
