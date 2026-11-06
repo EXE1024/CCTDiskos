@@ -6,7 +6,6 @@ if monitor then
     monitor.clear()
     monitor.setCursorPos(1,1)
     monitor.setTextColor(colors.white)
-    table.insert(drivers.started, "monitor")
 
     print("Monitor driver successfully started")
 end
