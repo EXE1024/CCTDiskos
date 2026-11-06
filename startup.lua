@@ -1,11 +1,22 @@
 local version = "gitextern 1.0 CCTDISKOS"
 local monitor = peripheral.wrap("top")
 local checkup = {
-    execs={"reboot.lua"}
+    execs={"fs.lua"}
 }
 -- Made for CC Tweaked (Minecraft Mod)
 
 -- CHECKUP FUNCTIONS
+
+function split(text, sep)
+    local array = {}
+    local pattern = string.format("([^%s]+)", sep)
+    
+    for part in string.gmatch(text, pattern) do
+        table.insert(array, part)
+    end
+    
+    return array
+end
 
 local function contains(list, word) 
     for _, check in ipairs(list) do
@@ -39,7 +50,6 @@ end
 local function fulldead()
     print("The system is completely damaged; please reinstall the system carefully to fix this error")
     print("█████████████████████████████████████████████████████████████████████████████████████████")
-    os.shutdown()
 end
 
 -- INIT FUNCTIONS
@@ -56,16 +66,18 @@ function drivers.init.monitor()
         monitor.setCursorPos(1,1)
         monitor.setTextColor(colors.white)
         table.insert(drivers.started, "monitor")
+
+        print("Monitor driver successfully started")
     end
 end
 
 local function startup()
+    drivers.init.monitor()
+
     local scan = check()
     if scan == false then
         fulldead()
     end
-
-    drivers.init.monitor()
 end
 
 startup()
