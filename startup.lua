@@ -1,7 +1,7 @@
 local version = "gitextern 1.0 CCTDISKOS"
 local monitor = peripheral.wrap("top")
 local checkup = {
-    execs={"fs.lua"}
+    execs={"diskos.lua"}
 }
 -- Made for CC Tweaked (Minecraft Mod)
 
@@ -49,7 +49,6 @@ end
 
 local function fulldead()
     print("The system is completely damaged; please reinstall the system carefully to fix this error")
-    print("█████████████████████████████████████████████████████████████████████████████████████████")
 end
 
 -- INIT FUNCTIONS
@@ -71,12 +70,22 @@ function drivers.init.monitor()
     end
 end
 
+local function shellapi(data)
+    print("workkking:"..data)
+end
+
 local function startup()
     drivers.init.monitor()
 
     local scan = check()
     if scan == false then
         fulldead()
+    end
+
+    while true do
+        io.write(">")
+        local data = read()
+        shellapi(data)
     end
 end
 
