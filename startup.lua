@@ -10,13 +10,9 @@ local checkup = {
 local function split(text, sep)
     local array = {}
     local pattern = string.format("([^%s]+)", sep)
-    if text = "" then
-        return array
-    end 
-    if string.find(text, sep, 1, true) then
-        for part in string.gmatch(text, pattern) do
-            table.insert(array, part)
-        end
+
+    for part in string.gmatch(text, pattern) do
+        table.insert(array, part)
     end
     return array
 end
@@ -50,6 +46,9 @@ end
 
 -- ERROR FUNCTIONS
 
+local function xpcallerr(err)
+    print("The command cannot be processed; ensure that the syntax is correct:"..err)
+end
 local function fulldead()
     print("The system is completely damaged; please reinstall the system carefully to fix this error")
 end
@@ -74,8 +73,8 @@ function drivers.init.monitor()
 end
 
 local function shellapi(data)
-    local exec = split(data, ":")
-    local params = split(exec[2], ",")
+    local exec = xpcall(split, xpcallerr, data, ":")
+    local params = xpcall(split, xpcallerr, exec[2], ",")
 
     local file = "execs/"..exec[1]..".lua"
     local eargs = " "
