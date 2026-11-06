@@ -1,7 +1,7 @@
 local version = "gitextern 1.0 CCTDISKOS"
 local monitor = peripheral.wrap("top")
 local checkup = {
-    files:{"reboot.lua"}
+    files={"reboot.lua"}
 }
 -- Made for CC Tweaked (Minecraft Mod)
 
@@ -34,4 +34,4 @@ local function checkup()
     return false
 end
 
-checkup()
+print(checkup())
